@@ -22,7 +22,7 @@
 
 #import "AppDelegate.h"
 
-@interface AppDelegate ()  <ReachabilityDelegate>
+@interface AppDelegate ()
 
 @end
 
@@ -32,29 +32,6 @@
 {
     // 初始化
     self.reachability = [Reachability reachabilityWithHostName:@"www.apple.com"];
-    
-    // 使用通知接收网络状态改变消息
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:kReachabilityChangedNotification object:nil];
-    
-    // 使用代理接收网络状态改变消息
-    self.reachability.delegate = self;
-    
-    // 使用代码块接收网络状态改变消息
-//    __weak __typeof__(self) weakSelf = self;
-//    [self.reachability addMonitor:self reachabilityStatusChanged:^(NetworkStatus status) {
-//        __typeof__(weakSelf) self = weakSelf;
-//        if (status == ReachableVia2G) {
-//            NSLog(@"Class '%@' work in 2G -[ Block ]-", self.classForCoder);
-//        } else if (status == ReachableVia3G) {
-//            NSLog(@"Class '%@' work in 3G -[ Block ]-", self.classForCoder);
-//        } else if (status == ReachableVia4G) {
-//            NSLog(@"Class '%@' work in 4G -[ Block ]-", self.classForCoder);
-//        } else if (status == ReachableViaWiFi) {
-//            NSLog(@"Class '%@' work in WIFI -[ Block ]-", self.classForCoder);
-//        } else {
-//            NSLog(@"Class '%@' work in NONE -[ Block ]-", self.classForCoder);
-//        }
-//    }];
     
     // 打开监控
     [self.reachability startMonitor];
@@ -86,42 +63,6 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-}
-
-//#pragma mark - Reachability Notification Methods
-//
-//- (void)reachabilityChanged:(NSNotification *)notification
-//{
-//    Reachability *reachability = [notification object];
-//    NetworkStatus status = [reachability currentStatus];
-//    if (status == ReachableVia2G) {
-//        NSLog(@"Class '%@' work in 2G -[ Notification ]-", self.classForCoder);
-//    } else if (status == ReachableVia3G) {
-//        NSLog(@"Class '%@' work in 3G -[ Notification ]-", self.classForCoder);
-//    } else if (status == ReachableVia4G) {
-//        NSLog(@"Class '%@' work in 4G -[ Notification ]-", self.classForCoder);
-//    } else if (status == ReachableViaWiFi) {
-//        NSLog(@"Class '%@' work in WIFI -[ Notification ]-", self.classForCoder);
-//    } else {
-//        NSLog(@"Class '%@' work in NONE -[ Notification ]-", self.classForCoder);
-//    }
-//}
-
-#pragma mark - ReachabilityDelegate Implementation
-
-- (void)reachability:(Reachability *)reachability changeStatus:(NetworkStatus)status
-{
-    if (status == ReachableVia2G) {
-        NSLog(@"Class '%@' work in 2G -[ Delegate ]-", self.classForCoder);
-    } else if (status == ReachableVia3G) {
-        NSLog(@"Class '%@' work in 3G -[ Delegate ]-", self.classForCoder);
-    } else if (status == ReachableVia4G) {
-        NSLog(@"Class '%@' work in 4G -[ Delegate ]-", self.classForCoder);
-    } else if (status == ReachableViaWiFi) {
-        NSLog(@"Class '%@' work in WIFI -[ Delegate ]-", self.classForCoder);
-    } else {
-        NSLog(@"Class '%@' work in NONE -[ Delegate ]-", self.classForCoder);
-    }
 }
 
 @end
